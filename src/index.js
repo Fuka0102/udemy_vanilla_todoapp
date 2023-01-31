@@ -15,20 +15,29 @@ const onCLickAdd = () => {
 
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
+
+  const backButton = document.createElement("button");
+  backButton.innerText = "戻す";
+
   completeButton.addEventListener("click", () => {
-    alert("完了");
+    const deleteTarget = deleteButton.closest(".list-row");
+    document.querySelector(".imcomplete-area-list").removeChild(deleteTarget);
   });
 
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.closest(".list-row");
-    document.querySelector(".imcomplete-area-list").removeChild(deleteTarget);
+    deleteFromImcompleteList(deleteTarget);
   });
 
   div.appendChild(completeButton);
   div.appendChild(deleteButton);
   li.appendChild(div);
+};
+
+const deleteFromImcompleteList = (target) => {
+  document.getElementById("imcomplete-list").removeChild(target);
 };
 
 document
