@@ -7,7 +7,7 @@ const onCLickAdd = () => {
 
   const li = document.createElement("li");
   li.className = "list-row";
-  li.innerText = inputText;
+  li.innerHTML = `<span>${inputText}</span>`;
   document.querySelector(".imcomplete-area-list").appendChild(li);
 
   const div = document.createElement("div");
@@ -15,9 +15,28 @@ const onCLickAdd = () => {
 
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
+
+  const backButton = document.createElement("button");
+  backButton.innerText = "戻す";
+
   completeButton.addEventListener("click", () => {
-    const deleteTarget = deleteButton.closest(".list-row");
-    deleteFromImcompleteList(deleteTarget);
+    const addTarget = completeButton.closest(".list-row");
+    deleteFromImcompleteList(addTarget);
+
+    const text = addTarget.firstElementChild.innerText;
+    addTarget.textContent = null;
+
+    const li = document.createElement("li");
+    li.className = "list-row";
+    li.innerHTML = `<span>${text}</span>`;
+
+    const div = document.createElement("div");
+    div.className = "button-area";
+
+    div.appendChild(backButton);
+    li.appendChild(div);
+
+    document.querySelector(".complete-area-list").appendChild(li);
   });
 
   const deleteButton = document.createElement("button");
