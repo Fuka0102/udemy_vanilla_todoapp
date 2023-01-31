@@ -15,13 +15,9 @@ const onCLickAdd = () => {
 
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
-
-  const backButton = document.createElement("button");
-  backButton.innerText = "戻す";
-
   completeButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.closest(".list-row");
-    document.querySelector(".imcomplete-area-list").removeChild(deleteTarget);
+    deleteFromImcompleteList(deleteTarget);
   });
 
   const deleteButton = document.createElement("button");
@@ -37,7 +33,7 @@ const onCLickAdd = () => {
 };
 
 const deleteFromImcompleteList = (target) => {
-  document.getElementById("imcomplete-list").removeChild(target);
+  document.querySelector(".imcomplete-area-list").removeChild(target);
 };
 
 document
