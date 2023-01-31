@@ -46,6 +46,27 @@ const onCLickAdd = () => {
     deleteFromImcompleteList(deleteTarget);
   });
 
+  backButton.addEventListener("click", () => {
+    const backTarget = backButton.closest(".list-row");
+    document.querySelector(".complete-area-list").removeChild(backTarget);
+
+    const text = backTarget.firstElementChild.innerText;
+    backTarget.textContent = null;
+
+    const li = document.createElement("li");
+    li.className = "list-row";
+    li.innerHTML = `<span>${text}</span>`;
+
+    const div = document.createElement("div");
+    div.className = "button-area";
+
+    div.appendChild(completeButton);
+    div.appendChild(deleteButton);
+    li.appendChild(div);
+
+    document.querySelector(".imcomplete-area-list").appendChild(li);
+  });
+
   div.appendChild(completeButton);
   div.appendChild(deleteButton);
   li.appendChild(div);
